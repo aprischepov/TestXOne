@@ -7,18 +7,19 @@
 
 import UIKit
 import SnapKit
+import SDWebImage
 
-class CatInfoCollectionViewCell: UICollectionViewCell {
+final class CatInfoCollectionViewCell: UICollectionViewCell {
     static let key: String = "CatInfoCollectionViewCell"
-    lazy var catImage: UIImageView = {
+    private let  api: TheCatApiProtocol = TheCatApiService()
+    private lazy var catImage: UIImageView = {
         let image = UIImageView()
         image.contentMode = .scaleAspectFill
         image.clipsToBounds = true
         return image
     }()
-    lazy var breedTitle: UILabel = {
-        let title = UILabel()
-        return title
+    var breedTitle: UILabel = {
+        return UILabel()
     }()
     
     override init(frame: CGRect) {
@@ -42,5 +43,15 @@ class CatInfoCollectionViewCell: UICollectionViewCell {
             make.left.right.equalToSuperview().inset(4)
         }
         super.updateConstraints()
+    }
+    
+    public func setData(image: String?, title: String) {
+        if let image = image {
+            let imagePath = "https://cdn2.thecatapi.com/images/\(image).jpg"
+            catImage.sd_setImage(with: URL(string: imagePath))
+        } else {
+            catImage.image = UIImage(named: "error")
+        }
+        breedTitle.text = title
     }
 }

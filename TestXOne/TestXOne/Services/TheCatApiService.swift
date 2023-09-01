@@ -9,8 +9,6 @@ import Foundation
 
 protocol TheCatApiProtocol {
     func getCatsData(limit: Int, page: Int) async throws -> [CatModel]
-    func getCatsBreedCount() async throws -> Int
-    func getImage(imageName: String) async throws -> Data
 }
 
 final class TheCatApiService: TheCatApiProtocol {
@@ -30,21 +28,5 @@ final class TheCatApiService: TheCatApiProtocol {
         guard let catsListUrl = catsListComponents.url else { return [] }
         let (data, _) = try await session.data(from: catsListUrl)
         return try decoder.decode([CatModel].self, from: data)
-    }
-    
-    func getCatsBreedCount() async throws -> Int {
-        guard let catsListComponents,
-              let catsListUrl = catsListComponents.url else { return 0 }
-        let (data, _) = try await session.data(from: catsListUrl)
-        return try decoder.decode([CatModel].self, from: data).count
-    }
-    
-    //    Get Cat's Image
-    func getImage(imageName: String) async throws -> Data {
-        let catImage = "https://cdn2.thecatapi.com/images/\(imageName).jpg"
-        guard let url = URL(string: catImage) else { return Data() }
-        let request =  URLRequest(url: url)
-        let (data, _) = try await session.data(for: request)
-        return data
     }
 }

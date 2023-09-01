@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 final class MainViewModel {
-//    MARK: Properties
+    //    MARK: Properties
     typealias Cats = [CatModel]
     let itemsPerRow: CGFloat = 2
     let itemSpacing: CGFloat = 8
@@ -21,31 +21,26 @@ final class MainViewModel {
             currentPage += 1
         }
     }
-    var catsBreedCount: Int = 0
-    let catsApiService: TheCatApiProtocol = TheCatApiService()
+    private let catsApiService: TheCatApiProtocol = TheCatApiService()
     
-//    MARK: Methods
-//    Fetch Cats Data
+    //    MARK: Methods
+    //    Fetch Cats Data
     func getData() async {
         do {
-            if catsBreedData.isEmpty {
-                catsBreedCount = try await catsApiService.getCatsBreedCount()
+            let cats = try await catsApiService.getCatsData(limit: currentLimit,
+                                                            page: currentPage)
+            if !cats.isEmpty {
+                catsBreedData.append(contentsOf: cats)
             }
-            let cats = try await catsApiService.getCatsData(limit: currentLimit, page: currentPage)
-            catsBreedData.append(contentsOf: cats)
         } catch {
             print(error)
         }
     }
     
-//    Get Image
-    func getCatImage(imageName: String) async -> UIImage? {
-        do {
-            let data = try await catsApiService.getImage(imageName: imageName)
-            return UIImage(data: data)
-        } catch let error {
-            print(error)
-            return nil
+//    Load More
+    func loadMore(index: Int) async {
+        if index == catsBreedData.count - 1 {
+            await getData()
         }
     }
 }

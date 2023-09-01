@@ -27,6 +27,10 @@ class MainViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .customWhite
         view.addSubview(catsByBreedCollectionView)
+        Task {
+            await vm.getData()
+            catsByBreedCollectionView.reloadData()
+        }
         updateViewConstraints()
     }
     
@@ -34,10 +38,6 @@ class MainViewController: UIViewController {
     override func updateViewConstraints() {
         catsByBreedCollectionView.snp.makeConstraints { make in
             make.left.right.top.bottom.equalToSuperview()
-        }
-        Task {
-            await vm.getData()
-            catsByBreedCollectionView.reloadData()
         }
         super.updateViewConstraints()
     }
@@ -52,14 +52,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CatInfoCollectionViewCell.key,
                                                          for: indexPath) as? CatInfoCollectionViewCell {
-            Task {
-                if let catImage = await vm.getCatImage(imageName: vm.catsBreedData[indexPath.row].image ?? "") {
-                    cell.catImage.image = catImage
-                } else {
-                    cell.catImage.image = UIImage(named: "error")
-                }
-            }
-            cell.breedTitle.text = vm.catsBreedData[indexPath.row].name
+            let title = vm.catsBreedData[indexPath.row].name
+            let image = vm.catsBreedData[indexPath.row].image
+            cell.setData(image: image, title: title)
             return cell
         }
         return UICollectionViewCell()
@@ -73,13 +68,15 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
     
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
-        guard indexPath.row == vm.catsBreedData.count - 1 && indexPath.row != vm.catsBreedCount else { return }
+        if indexPath.row == vm.catsBreedData.count - 1 {
             Task {
                 await vm.getData()
                 catsByBreedCollectionView.reloadData()
             }
-//        }
+        }
     }
+    
+    
 }
 
 //    MARK: CollectionViewLayuot Extension

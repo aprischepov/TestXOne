@@ -18,7 +18,8 @@
 		5338091A2AA1E4CD007ADF90 /* TheCatApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533809192AA1E4CD007ADF90 /* TheCatApiService.swift */; };
 		5338091C2AA1E52E007ADF90 /* CatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5338091B2AA1E52E007ADF90 /* CatModel.swift */; };
 		533809202AA20951007ADF90 /* WikipediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5338091F2AA20951007ADF90 /* WikipediaViewController.swift */; };
-		533809232AA22339007ADF90 /* Extension + UIColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533809222AA22339007ADF90 /* Extension + UIColor.swift */; };
+		533809232AA22339007ADF90 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533809222AA22339007ADF90 /* UIColor + Extension.swift */; };
+		533809262AA26CD9007ADF90 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 533809252AA26CD9007ADF90 /* SDWebImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,7 +35,7 @@
 		533809192AA1E4CD007ADF90 /* TheCatApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheCatApiService.swift; sourceTree = "<group>"; };
 		5338091B2AA1E52E007ADF90 /* CatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatModel.swift; sourceTree = "<group>"; };
 		5338091F2AA20951007ADF90 /* WikipediaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaViewController.swift; sourceTree = "<group>"; };
-		533809222AA22339007ADF90 /* Extension + UIColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension + UIColor.swift"; sourceTree = "<group>"; };
+		533809222AA22339007ADF90 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -42,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				533809262AA26CD9007ADF90 /* SDWebImage in Frameworks */,
 				5338090F2AA1CEC3007ADF90 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -151,7 +153,7 @@
 		533809212AA22324007ADF90 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				533809222AA22339007ADF90 /* Extension + UIColor.swift */,
+				533809222AA22339007ADF90 /* UIColor + Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -174,6 +176,7 @@
 			name = TestXOne;
 			packageProductDependencies = (
 				5338090E2AA1CEC3007ADF90 /* SnapKit */,
+				533809252AA26CD9007ADF90 /* SDWebImage */,
 			);
 			productName = TestXOne;
 			productReference = 533808F42AA1CBE9007ADF90 /* TestXOne.app */;
@@ -205,6 +208,7 @@
 			mainGroup = 533808EB2AA1CBE9007ADF90;
 			packageReferences = (
 				5338090D2AA1CEC3007ADF90 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				533809242AA26CD9007ADF90 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 533808F52AA1CBE9007ADF90 /* Products */;
 			projectDirPath = "";
@@ -234,7 +238,7 @@
 			files = (
 				533809162AA1DAFD007ADF90 /* MainViewModel.swift in Sources */,
 				533808FC2AA1CBE9007ADF90 /* MainViewController.swift in Sources */,
-				533809232AA22339007ADF90 /* Extension + UIColor.swift in Sources */,
+				533809232AA22339007ADF90 /* UIColor + Extension.swift in Sources */,
 				533809112AA1D456007ADF90 /* CatInfoCollectionViewCell.swift in Sources */,
 				533808F82AA1CBE9007ADF90 /* AppDelegate.swift in Sources */,
 				533808FA2AA1CBE9007ADF90 /* SceneDelegate.swift in Sources */,
@@ -460,6 +464,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		533809242AA26CD9007ADF90 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -467,6 +479,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5338090D2AA1CEC3007ADF90 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		533809252AA26CD9007ADF90 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 533809242AA26CD9007ADF90 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
