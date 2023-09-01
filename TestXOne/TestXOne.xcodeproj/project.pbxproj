@@ -15,6 +15,11 @@
 		5338090F2AA1CEC3007ADF90 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = 5338090E2AA1CEC3007ADF90 /* SnapKit */; };
 		533809112AA1D456007ADF90 /* CatInfoCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533809102AA1D456007ADF90 /* CatInfoCollectionViewCell.swift */; };
 		533809162AA1DAFD007ADF90 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533809152AA1DAFD007ADF90 /* MainViewModel.swift */; };
+		5338091A2AA1E4CD007ADF90 /* TheCatApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533809192AA1E4CD007ADF90 /* TheCatApiService.swift */; };
+		5338091C2AA1E52E007ADF90 /* CatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5338091B2AA1E52E007ADF90 /* CatModel.swift */; };
+		533809202AA20951007ADF90 /* WikipediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5338091F2AA20951007ADF90 /* WikipediaViewController.swift */; };
+		533809232AA22339007ADF90 /* UIColor + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533809222AA22339007ADF90 /* UIColor + Extension.swift */; };
+		533809262AA26CD9007ADF90 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = 533809252AA26CD9007ADF90 /* SDWebImage */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +32,10 @@
 		533809052AA1CBEB007ADF90 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		533809102AA1D456007ADF90 /* CatInfoCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatInfoCollectionViewCell.swift; sourceTree = "<group>"; };
 		533809152AA1DAFD007ADF90 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
+		533809192AA1E4CD007ADF90 /* TheCatApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheCatApiService.swift; sourceTree = "<group>"; };
+		5338091B2AA1E52E007ADF90 /* CatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatModel.swift; sourceTree = "<group>"; };
+		5338091F2AA20951007ADF90 /* WikipediaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaViewController.swift; sourceTree = "<group>"; };
+		533809222AA22339007ADF90 /* UIColor + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor + Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -34,6 +43,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				533809262AA26CD9007ADF90 /* SDWebImage in Frameworks */,
 				5338090F2AA1CEC3007ADF90 /* SnapKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -60,9 +70,11 @@
 		533808F62AA1CBE9007ADF90 /* TestXOne */ = {
 			isa = PBXGroup;
 			children = (
-				533809132AA1D648007ADF90 /* Model */,
+				533809212AA22324007ADF90 /* Extensions */,
+				533809182AA1E4A7007ADF90 /* Services */,
+				533809132AA1D648007ADF90 /* Models */,
 				5338090B2AA1CD4A007ADF90 /* Supporting Files */,
-				533809122AA1D635007ADF90 /* View */,
+				533809122AA1D635007ADF90 /* Views */,
 				5338090C2AA1CDA7007ADF90 /* Resources */,
 			);
 			path = TestXOne;
@@ -87,20 +99,22 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
-		533809122AA1D635007ADF90 /* View */ = {
+		533809122AA1D635007ADF90 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				5338091D2AA207E3007ADF90 /* WikiPage */,
 				533809172AA1E3E5007ADF90 /* CatInfo */,
 				533809142AA1D918007ADF90 /* Main */,
 			);
-			path = View;
+			path = Views;
 			sourceTree = "<group>";
 		};
-		533809132AA1D648007ADF90 /* Model */ = {
+		533809132AA1D648007ADF90 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				5338091B2AA1E52E007ADF90 /* CatModel.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		533809142AA1D918007ADF90 /* Main */ = {
@@ -118,6 +132,30 @@
 				533809102AA1D456007ADF90 /* CatInfoCollectionViewCell.swift */,
 			);
 			path = CatInfo;
+			sourceTree = "<group>";
+		};
+		533809182AA1E4A7007ADF90 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				533809192AA1E4CD007ADF90 /* TheCatApiService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+		5338091D2AA207E3007ADF90 /* WikiPage */ = {
+			isa = PBXGroup;
+			children = (
+				5338091F2AA20951007ADF90 /* WikipediaViewController.swift */,
+			);
+			path = WikiPage;
+			sourceTree = "<group>";
+		};
+		533809212AA22324007ADF90 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				533809222AA22339007ADF90 /* UIColor + Extension.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,6 +176,7 @@
 			name = TestXOne;
 			packageProductDependencies = (
 				5338090E2AA1CEC3007ADF90 /* SnapKit */,
+				533809252AA26CD9007ADF90 /* SDWebImage */,
 			);
 			productName = TestXOne;
 			productReference = 533808F42AA1CBE9007ADF90 /* TestXOne.app */;
@@ -169,6 +208,7 @@
 			mainGroup = 533808EB2AA1CBE9007ADF90;
 			packageReferences = (
 				5338090D2AA1CEC3007ADF90 /* XCRemoteSwiftPackageReference "SnapKit" */,
+				533809242AA26CD9007ADF90 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = 533808F52AA1CBE9007ADF90 /* Products */;
 			projectDirPath = "";
@@ -198,9 +238,13 @@
 			files = (
 				533809162AA1DAFD007ADF90 /* MainViewModel.swift in Sources */,
 				533808FC2AA1CBE9007ADF90 /* MainViewController.swift in Sources */,
+				533809232AA22339007ADF90 /* UIColor + Extension.swift in Sources */,
 				533809112AA1D456007ADF90 /* CatInfoCollectionViewCell.swift in Sources */,
 				533808F82AA1CBE9007ADF90 /* AppDelegate.swift in Sources */,
 				533808FA2AA1CBE9007ADF90 /* SceneDelegate.swift in Sources */,
+				5338091A2AA1E4CD007ADF90 /* TheCatApiService.swift in Sources */,
+				533809202AA20951007ADF90 /* WikipediaViewController.swift in Sources */,
+				5338091C2AA1E52E007ADF90 /* CatModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -420,6 +464,14 @@
 				minimumVersion = 5.0.0;
 			};
 		};
+		533809242AA26CD9007ADF90 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -427,6 +479,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5338090D2AA1CEC3007ADF90 /* XCRemoteSwiftPackageReference "SnapKit" */;
 			productName = SnapKit;
+		};
+		533809252AA26CD9007ADF90 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 533809242AA26CD9007ADF90 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
