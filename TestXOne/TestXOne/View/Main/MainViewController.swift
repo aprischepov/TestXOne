@@ -42,13 +42,14 @@ class MainViewController: UIViewController {
 //    MARK: CollectionView Extension
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        vm.array.count
+        vm.catsData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CatInfoCollectionViewCell.key,
                                                          for: indexPath) as? CatInfoCollectionViewCell {
-            cell.breedTitle.text = vm.array[indexPath.row].description
+//            cell.catImage.image =
+            cell.breedTitle.text = vm.catsData[indexPath.row].name
             return cell
         }
         return UICollectionViewCell()
