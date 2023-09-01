@@ -60,6 +60,12 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
         }
         return UICollectionViewCell()
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let vc = WikipediaViewController()
+        vc.url = vm.catsData[indexPath.row].url ?? ""
+        navigationController?.pushViewController(vc, animated: true)
+    }
 }
 
 //    MARK: CollectionViewLayuot Extension

@@ -17,6 +17,7 @@
 		533809162AA1DAFD007ADF90 /* MainViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533809152AA1DAFD007ADF90 /* MainViewModel.swift */; };
 		5338091A2AA1E4CD007ADF90 /* TheCatApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 533809192AA1E4CD007ADF90 /* TheCatApiService.swift */; };
 		5338091C2AA1E52E007ADF90 /* CatModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5338091B2AA1E52E007ADF90 /* CatModel.swift */; };
+		533809202AA20951007ADF90 /* WikipediaViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5338091F2AA20951007ADF90 /* WikipediaViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		533809152AA1DAFD007ADF90 /* MainViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewModel.swift; sourceTree = "<group>"; };
 		533809192AA1E4CD007ADF90 /* TheCatApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TheCatApiService.swift; sourceTree = "<group>"; };
 		5338091B2AA1E52E007ADF90 /* CatModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatModel.swift; sourceTree = "<group>"; };
+		5338091F2AA20951007ADF90 /* WikipediaViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WikipediaViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,6 +97,7 @@
 		533809122AA1D635007ADF90 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5338091D2AA207E3007ADF90 /* WikipediaView */,
 				533809172AA1E3E5007ADF90 /* CatInfo */,
 				533809142AA1D918007ADF90 /* Main */,
 			);
@@ -132,6 +135,14 @@
 				533809192AA1E4CD007ADF90 /* TheCatApiService.swift */,
 			);
 			path = Services;
+			sourceTree = "<group>";
+		};
+		5338091D2AA207E3007ADF90 /* WikipediaView */ = {
+			isa = PBXGroup;
+			children = (
+				5338091F2AA20951007ADF90 /* WikipediaViewController.swift */,
+			);
+			path = WikipediaView;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -216,6 +227,7 @@
 				533808F82AA1CBE9007ADF90 /* AppDelegate.swift in Sources */,
 				533808FA2AA1CBE9007ADF90 /* SceneDelegate.swift in Sources */,
 				5338091A2AA1E4CD007ADF90 /* TheCatApiService.swift in Sources */,
+				533809202AA20951007ADF90 /* WikipediaViewController.swift in Sources */,
 				5338091C2AA1E52E007ADF90 /* CatModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
