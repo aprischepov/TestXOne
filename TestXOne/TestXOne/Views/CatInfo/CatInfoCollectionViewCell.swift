@@ -48,9 +48,7 @@ final class CatInfoCollectionViewCell: UICollectionViewCell {
     public func setData(image: String?, title: String) {
         if let image = image {
             let imagePath = "https://cdn2.thecatapi.com/images/\(image).jpg"
-            catImage.sd_setImage(with: URL(string: imagePath))
-        } else {
-            catImage.image = UIImage(named: "error")
+            catImage.sd_setImage(with: URL(string: imagePath), placeholderImage: UIImage(named: "error"))
         }
         breedTitle.text = title
     }
