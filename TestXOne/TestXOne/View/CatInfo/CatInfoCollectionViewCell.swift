@@ -12,6 +12,8 @@ class CatInfoCollectionViewCell: UICollectionViewCell {
     static let key: String = "CatInfoCollectionViewCell"
     lazy var catImage: UIImageView = {
         let image = UIImageView()
+        image.contentMode = .scaleAspectFill
+        image.clipsToBounds = true
         return image
     }()
     lazy var breedTitle: UILabel = {
@@ -23,7 +25,6 @@ class CatInfoCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         contentView.addSubview(catImage)
         contentView.addSubview(breedTitle)
-        contentView.backgroundColor = .red
         updateConstraints()
     }
     
@@ -33,11 +34,11 @@ class CatInfoCollectionViewCell: UICollectionViewCell {
     
     override func updateConstraints() {
         catImage.snp.makeConstraints { make in
-            make.left.top.right.equalToSuperview().inset(4)
+            make.left.top.right.equalToSuperview()
             make.bottom.equalToSuperview().inset(24)
         }
         breedTitle.snp.makeConstraints { make in
-            make.top.equalTo(catImage.snp.bottom).inset(8)
+            make.top.equalTo(catImage.snp.bottom).offset(4)
             make.left.right.equalToSuperview().inset(4)
         }
         super.updateConstraints()

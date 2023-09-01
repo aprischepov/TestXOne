@@ -19,7 +19,7 @@ final class TheCatApiService: TheCatApiProtocol {
     
     func getCatsData(limit: Int, page: Int) async throws -> [CatModel] {
         guard var catsListComponents,
-              var catsListUrl = catsListComponents.url else { return [] }
+              let catsListUrl = catsListComponents.url else { return [] }
         catsListComponents.queryItems = [URLQueryItem(name: "limit",
                                                value: limit.description),
                                          URLQueryItem(name: "page",
@@ -29,7 +29,7 @@ final class TheCatApiService: TheCatApiProtocol {
     }
     
     func getImage(imageName: String) async throws -> Data {
-        var catImage = "https://cdn2.thecatapi.com/images/\(imageName).jpg"
+        let catImage = "https://cdn2.thecatapi.com/images/\(imageName).jpg"
         guard let url = URL(string: catImage) else { return Data() }
         let request =  URLRequest(url: url)
         let (data, _) = try await session.data(for: request)

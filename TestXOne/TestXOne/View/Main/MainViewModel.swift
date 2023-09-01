@@ -13,24 +13,15 @@ final class MainViewModel {
     typealias Cats = [CatModel]
     let itemsPerRow: CGFloat = 2
     let itemSpacing: CGFloat = 8
+    let itemsPerColumn: CGFloat = 3
     var catsData = Cats()
     let catsApiService: TheCatApiProtocol = TheCatApiService()
-    
-    init() {
-        Task {
-            await fetchData()
-        }
-    }
-    
     
 //    MARK: Methods
 //    Fetch Cats Data
     func fetchData() async {
         do {
-            let cats = try await catsApiService.getCatsData(limit: 10, page: 0)
-            await MainActor.run {
-                catsData = cats
-            }
+            catsData = try await catsApiService.getCatsData(limit: 10, page: 0)
         } catch let error {
             print(error)
         }

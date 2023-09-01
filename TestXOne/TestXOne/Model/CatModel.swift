@@ -10,8 +10,8 @@ import Foundation
 struct CatModel: Decodable {
     let id: String
     let name: String
-    let url: URL
-    let image: String
+    let url: String?
+    let image: String?
     
     enum CodingKeys: String, CodingKey {
         case id, name

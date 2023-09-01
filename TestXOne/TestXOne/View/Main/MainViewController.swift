@@ -17,7 +17,7 @@ class MainViewController: UIViewController {
                                 forCellWithReuseIdentifier: CatInfoCollectionViewCell.key)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.backgroundColor = .lightGray
+        collectionView.backgroundColor = .white
         return collectionView
     }()
     private var vm: MainViewModel = MainViewModel()
@@ -35,6 +35,10 @@ class MainViewController: UIViewController {
         catsByBreedCollectionView.snp.makeConstraints { make in
             make.left.right.top.bottom.equalToSuperview()
         }
+        Task {
+            await vm.fetchData()
+            catsByBreedCollectionView.reloadData()
+        }
         super.updateViewConstraints()
     }
 }
@@ -48,7 +52,9 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CatInfoCollectionViewCell.key,
                                                          for: indexPath) as? CatInfoCollectionViewCell {
-//            cell.catImage.image =
+            Task {
+                cell.catImage.image = await vm.getCatImage(imageName: vm.catsData[indexPath.row].image ?? "")
+            }
             cell.breedTitle.text = vm.catsData[indexPath.row].name
             return cell
         }
@@ -59,9 +65,10 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
 //    MARK: CollectionViewLayuot Extension
 extension MainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let size = CGFloat(view.frame.width / vm.itemsPerRow - vm.itemSpacing * 1.5)
-        return CGSize(width: size,
-                      height: size)
+        let width = CGFloat(view.frame.width / vm.itemsPerRow - vm.itemSpacing * 1.5)
+        let height = CGFloat(view.frame.height / vm.itemsPerColumn - vm.itemSpacing * 1.5)
+        return CGSize(width: width,
+                      height: height)
     }
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, insetForSectionAt section: Int) -> UIEdgeInsets {
