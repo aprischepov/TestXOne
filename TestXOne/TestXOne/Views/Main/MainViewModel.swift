@@ -14,15 +14,26 @@ final class MainViewModel {
     let itemsPerRow: CGFloat = 2
     let itemSpacing: CGFloat = 8
     let itemsPerColumn: CGFloat = 3
-    var catsData = Cats()
+    var currentLimit: Int = 10
+    var currentPage: Int = 0
+    var catsBreedData: Cats = [] {
+        didSet {
+            currentPage += 1
+        }
+    }
+    var catsBreedCount: Int = 0
     let catsApiService: TheCatApiProtocol = TheCatApiService()
     
 //    MARK: Methods
 //    Fetch Cats Data
-    func fetchData() async {
+    func getData() async {
         do {
-            catsData = try await catsApiService.getCatsData(limit: 10, page: 0)
-        } catch let error {
+            if catsBreedData.isEmpty {
+                catsBreedCount = try await catsApiService.getCatsBreedCount()
+            }
+            let cats = try await catsApiService.getCatsData(limit: currentLimit, page: currentPage)
+            catsBreedData.append(contentsOf: cats)
+        } catch {
             print(error)
         }
     }

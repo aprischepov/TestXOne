@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class MainViewController: UIViewController {
-//    MARK: Properties
+    //    MARK: Properties
     private lazy var catsByBreedCollectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero,
                                               collectionViewLayout: UICollectionViewFlowLayout())
@@ -17,26 +17,26 @@ class MainViewController: UIViewController {
                                 forCellWithReuseIdentifier: CatInfoCollectionViewCell.key)
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.backgroundColor = .white
+        collectionView.backgroundColor = .customWhite
         return collectionView
     }()
     private var vm: MainViewModel = MainViewModel()
     
-//    MARK: ViewDidLoad
+    //    MARK: ViewDidLoad
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = .customWhite
         view.addSubview(catsByBreedCollectionView)
         updateViewConstraints()
     }
     
-//    MARK: ViewConstraints
+    //    MARK: ViewConstraints
     override func updateViewConstraints() {
         catsByBreedCollectionView.snp.makeConstraints { make in
             make.left.right.top.bottom.equalToSuperview()
         }
         Task {
-            await vm.fetchData()
+            await vm.getData()
             catsByBreedCollectionView.reloadData()
         }
         super.updateViewConstraints()
@@ -46,16 +46,20 @@ class MainViewController: UIViewController {
 //    MARK: CollectionView Extension
 extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        vm.catsData.count
+        vm.catsBreedData.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CatInfoCollectionViewCell.key,
                                                          for: indexPath) as? CatInfoCollectionViewCell {
             Task {
-                cell.catImage.image = await vm.getCatImage(imageName: vm.catsData[indexPath.row].image ?? "")
+                if let catImage = await vm.getCatImage(imageName: vm.catsBreedData[indexPath.row].image ?? "") {
+                    cell.catImage.image = catImage
+                } else {
+                    cell.catImage.image = UIImage(named: "error")
+                }
             }
-            cell.breedTitle.text = vm.catsData[indexPath.row].name
+            cell.breedTitle.text = vm.catsBreedData[indexPath.row].name
             return cell
         }
         return UICollectionViewCell()
@@ -63,8 +67,18 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let vc = WikipediaViewController()
-        vc.url = vm.catsData[indexPath.row].url ?? ""
+        vc.url = vm.catsBreedData[indexPath.row].url ?? ""
+        vc.title = vm.catsBreedData[indexPath.row].name
         navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        guard indexPath.row == vm.catsBreedData.count - 1 && indexPath.row != vm.catsBreedCount else { return }
+            Task {
+                await vm.getData()
+                catsByBreedCollectionView.reloadData()
+            }
+//        }
     }
 }
 
