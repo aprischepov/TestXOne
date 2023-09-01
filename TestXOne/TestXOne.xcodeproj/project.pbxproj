@@ -54,14 +54,30 @@
 		533808F62AA1CBE9007ADF90 /* TestXOne */ = {
 			isa = PBXGroup;
 			children = (
-				533808F72AA1CBE9007ADF90 /* AppDelegate.swift */,
-				533808F92AA1CBE9007ADF90 /* SceneDelegate.swift */,
+				5338090B2AA1CD4A007ADF90 /* Supporting Files */,
 				533808FB2AA1CBE9007ADF90 /* ViewController.swift */,
-				533809002AA1CBEB007ADF90 /* Assets.xcassets */,
-				533809022AA1CBEB007ADF90 /* LaunchScreen.storyboard */,
-				533809052AA1CBEB007ADF90 /* Info.plist */,
+				5338090C2AA1CDA7007ADF90 /* Resources */,
 			);
 			path = TestXOne;
+			sourceTree = "<group>";
+		};
+		5338090B2AA1CD4A007ADF90 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				533809052AA1CBEB007ADF90 /* Info.plist */,
+				533809022AA1CBEB007ADF90 /* LaunchScreen.storyboard */,
+				533808F72AA1CBE9007ADF90 /* AppDelegate.swift */,
+				533808F92AA1CBE9007ADF90 /* SceneDelegate.swift */,
+			);
+			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		5338090C2AA1CDA7007ADF90 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				533809002AA1CBEB007ADF90 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -277,7 +293,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C4QZKCN6PP;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TestXOne/Info.plist;
+				INFOPLIST_FILE = "TestXOne/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
@@ -305,7 +321,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = C4QZKCN6PP;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = TestXOne/Info.plist;
+				INFOPLIST_FILE = "TestXOne/Supporting Files/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
