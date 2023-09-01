@@ -28,8 +28,17 @@ class MainViewController: UIViewController {
         view.backgroundColor = .customWhite
         view.addSubview(catsByBreedCollectionView)
         Task {
-            await vm.getData()
-            catsByBreedCollectionView.reloadData()
+            do {
+                try await vm.getData()
+                catsByBreedCollectionView.reloadData()
+            } catch {
+                let alert = UIAlertController(title: "Something was wrong",
+                                              message: error.localizedDescription,
+                                              preferredStyle: .alert)
+                alert.addAction(UIAlertAction(title: "Ok",
+                                              style: .default))
+                present(alert, animated: true)
+            }
         }
         updateViewConstraints()
     }
@@ -70,13 +79,19 @@ extension MainViewController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         if indexPath.row == vm.catsBreedData.count - 1 {
             Task {
-                await vm.getData()
-                catsByBreedCollectionView.reloadData()
+                do {
+                    try await vm.getData()
+                    catsByBreedCollectionView.reloadData()
+                } catch {
+                    let alert = UIAlertController(title: "Something was wrong",
+                                                  message: error.localizedDescription,
+                                                  preferredStyle: .alert)
+                    alert.addAction(UIAlertAction(title: "Ok",
+                                                  style: .default))
+                }
             }
         }
     }
-    
-    
 }
 
 //    MARK: CollectionViewLayuot Extension

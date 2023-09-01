@@ -25,22 +25,18 @@ final class MainViewModel {
     
     //    MARK: Methods
     //    Fetch Cats Data
-    func getData() async {
-        do {
-            let cats = try await catsApiService.getCatsData(limit: currentLimit,
-                                                            page: currentPage)
-            if !cats.isEmpty {
-                catsBreedData.append(contentsOf: cats)
-            }
-        } catch {
-            print(error)
+    func getData() async throws {
+        let cats = try await catsApiService.getCatsData(limit: currentLimit,
+                                                        page: currentPage)
+        if !cats.isEmpty {
+            catsBreedData.append(contentsOf: cats)
         }
     }
     
-//    Load More
-    func loadMore(index: Int) async {
+    //    Load More
+    func loadMore(index: Int) async throws {
         if index == catsBreedData.count - 1 {
-            await getData()
+            try await getData()
         }
     }
 }
